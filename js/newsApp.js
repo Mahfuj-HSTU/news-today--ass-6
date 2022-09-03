@@ -1,11 +1,20 @@
 const loadNewsCatagory = () => {
     const url = "https://openapi.programming-hero.com/api/news/categories"
-    fetch(url)
-        .then(res => res.json())
-        .then(data => catagoriesButton(data.data.news_category));
+    // fetch(url)
+    //     .then(res => res.json())
+    //     .then(data => catagoriesButton(data.data.news_category))
+    //     .catch(error => console.log(error))
 
+    try {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => catagoriesButton(data.data.news_category))
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
-
+// create catagory
 const catagoriesButton = (catagories) => {
     for (const catagory of catagories) {
         const catagories = document.getElementById('catagories')
@@ -16,15 +25,16 @@ const catagoriesButton = (catagories) => {
         catagories.appendChild(btn)
     }
 }
-
+// show all news at home
 document.getElementById('allNews'); {
     const url = `https://openapi.programming-hero.com/api/news/category/08`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayNews(data.data));
 }
-
+// show news to click the catagory
 const loadNews = (id) => {
+    spinner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
     fetch(url)
         .then(res => res.json())
@@ -36,6 +46,9 @@ const displayNews = (newses) => {
     const mainContainer = document.getElementById('main-container');
     mainContainer.innerHTML = '';
     for (const news of newses) {
+        const newsTotalID = document.getElementById('news-total')
+        const newsTotal = newses.length;
+        newsTotalID.innerText = newsTotal;
         // console.log(news);
         // console.log(news.author.name)
         const div = document.createElement('div')
@@ -65,13 +78,24 @@ const displayNews = (newses) => {
         </div>
         `;
         mainContainer.appendChild(div)
-
+        spinner(false)
     }
 
 }
 
+// for spinner
+const spinner = (loding) => {
+    const loaderSection = document.getElementById('loader');
+    if (loding) {
+        loaderSection.classList.remove('d-none');
+    } else {
+        loaderSection.classList.add('d-none');
+    }
+};
 
 
+
+// for modal section
 const loadNewsDetails = (newsId) => {
     const url = `https://openapi.programming-hero.com/api/news/${newsId}`;
     fetch(url)
@@ -81,7 +105,6 @@ const loadNewsDetails = (newsId) => {
 };
 
 const displayNewsDetail = (news) => {
-    // console.log(phone);
     const modalTitle = document.getElementById('newsDetailsLabel');
     modalTitle.innerText = news.title;
     const newsDetails = document.getElementById('news-detailes');
@@ -95,4 +118,4 @@ const displayNewsDetail = (news) => {
 
 
 // loadNews()
-loadNewsCatagory(08)
+loadNewsCatagory()
