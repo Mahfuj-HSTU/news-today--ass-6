@@ -46,9 +46,13 @@ const loadNews = (id) => {
 const displayNews = (newses) => {
     const mainContainer = document.getElementById('main-container');
     mainContainer.innerHTML = '';
-    for (const news of newses) {
-        console.log(news.total_view)
+    // console.log(newses);
+    newses.sort((a, b) => {
+        return b.total_view - a.total_view;
+    });
 
+    // console.log(newses);
+    for (const news of newses) {
         const newsTotalID = document.getElementById('news-total')
         const newsTotal = newses.length;
         newsTotalID.innerText = newsTotal;
@@ -69,11 +73,11 @@ const displayNews = (newses) => {
                         <div class="d-flex ">
                             <img class="rounded-circle border border-secondary" src="${news.author.img} " alt="" height="60" width="60" />
                            <div class="ps-3 mt-2">
-                            <h6 class="m-0">${news.author.name} </h6>
-                            <small>${news.author.published_date} </small>
+                            <h6 class="m-0">${news.author.name ? news.author.name : "No Author found"} </h6>
+                            <small>${news.author.published_date ? news.author.published_date : "No publish date found"} </small>
                            </div>
                         </div>
-                        <p class='pt-2'>${news.total_view} </p>
+                        <p class='pt-2'>${news.total_view ? news.total_view : "No views found"} </p>
                         <button onclick="loadNewsDetails('${news._id}')" href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">Show Details</button>
                     </div>
                 </div>
