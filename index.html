@@ -28,30 +28,47 @@
                         </li>
                     </ul>
                     <img class="rounded-circle border border-secondary" src="./image/20200702_202732.jpg" alt=""
-                        width="30" height="24">
+                        width="35" height="30">
                 </div>
             </div>
 
         </nav>
         <hr size="10">
     </header>
-    <main class="container">
-        <div class="d-flex justify-content-between mb-4">
-            <button class="btn btn-light">Home</button>
-            <button class="btn btn-light">Breaking news</button>
-            <button class="btn btn-light">Regular news</button>
-            <button class="btn btn-light">International news</button>
-            <button class="btn btn-light">Sports</button>
-            <button class="btn btn-light">Entertainment</button>
-            <button class="btn btn-light">Culture</button>
-            <button class="btn btn-light">Arts</button>
-            <button class="btn btn-light">All news</button>
-        </div>
-        <div>
-            <h3></h3>
-        </div>
-        <div id="main-container">
-        </div>
+    <main>
+        <section class="container">
+            <div id="catagories" class="d-flex justify-content-between mb-4">
+                <button id="allNews">Home</button>
+            </div>
+            <div>
+                <h3></h3>
+            </div>
+            <div id="main-container">
+            </div>
+        </section>
+
+
+        <section>
+            <!-- Modal -->
+            <div class="modal fade" id="newsDetailsModal" tabindex="-1" aria-labelledby="newsDetailsLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="newsDetailsLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div id="news-detailes" class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <script src="./js/newsApp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
