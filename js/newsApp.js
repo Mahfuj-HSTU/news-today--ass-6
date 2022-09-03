@@ -46,22 +46,32 @@ const loadNews = (id) => {
 const displayNews = (newses) => {
     const mainContainer = document.getElementById('main-container');
     mainContainer.innerHTML = '';
-    // console.log(newses);
+    // sort news by views
     newses.sort((a, b) => {
         return b.total_view - a.total_view;
     });
 
-    // console.log(newses);
-    for (const news of newses) {
-        const newsTotalID = document.getElementById('news-total')
-        const newsTotal = newses.length;
-        newsTotalID.innerText = newsTotal;
-        // console.log(news);
-        // console.log(news.author.name)
-        const div = document.createElement('div')
-        div.classList.add('card', 'mb-3', 'p-4')
-        div.innerHTML = `
-        <div class="row g-0">
+    const newsTotal = newses.length;
+    console.log(newses.length);
+
+    const noNews = document.getElementById('no-news')
+    const newsTotalID = document.getElementById('news-total')
+
+    if (newsTotal === 0) {
+        noNews.innerText = "No news found"
+        // spinner(false)
+    } else {
+
+        for (const news of newses) {
+
+            newsTotalID.innerText = newsTotal;
+
+            // console.log(news);
+            // console.log(news.author.name)
+            const div = document.createElement('div')
+            div.classList.add('card', 'mb-3', 'p-4')
+            div.innerHTML = `
+            <div class="row g-0">
             <div class="col-md-4 d-flex align-items-center ">
                 <img src="${news.image_url} " class="img-fluid rounded-start " alt="" >
             </div>
@@ -84,8 +94,9 @@ const displayNews = (newses) => {
             </div>
         </div>
         `;
-        mainContainer.appendChild(div)
-        spinner(false)
+            mainContainer.appendChild(div)
+            spinner(false)
+        }
     }
 
 }
