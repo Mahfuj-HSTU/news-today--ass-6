@@ -18,9 +18,10 @@ const loadNewsCatagory = () => {
 const catagoriesButton = (catagories) => {
     for (const catagory of catagories) {
         const catagories = document.getElementById('catagories')
-        const btn = document.createElement('button');
+        const btn = document.createElement('li');
+        btn.classList.add('nav-item', 'px-1')
         btn.innerHTML = `
-        <button onclick="loadNews('${catagory.category_id}')" class="btn btn-light">${catagory.category_name}</button>
+        <a onclick="loadNews('${catagory.category_id}')" class="nav-link" aria-current="page" href="#">${catagory.category_name}</a>
         `;
         catagories.appendChild(btn)
     }
