@@ -47,6 +47,8 @@ const displayNews = (newses) => {
     const mainContainer = document.getElementById('main-container');
     mainContainer.innerHTML = '';
     for (const news of newses) {
+        console.log(news.total_view)
+
         const newsTotalID = document.getElementById('news-total')
         const newsTotal = newses.length;
         newsTotalID.innerText = newsTotal;
