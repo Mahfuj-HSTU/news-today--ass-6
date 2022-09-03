@@ -1,10 +1,5 @@
 const loadNewsCatagory = () => {
     const url = "https://openapi.programming-hero.com/api/news/categories"
-    // fetch(url)
-    //     .then(res => res.json())
-    //     .then(data => catagoriesButton(data.data.news_category))
-    //     .catch(error => console.log(error))
-
     try {
         fetch(url)
             .then(res => res.json())
@@ -55,16 +50,23 @@ const displayNews = (newses) => {
     console.log(newses.length);
 
     const noNews = document.getElementById('no-news')
-    const newsTotalID = document.getElementById('news-total')
-
     if (newsTotal === 0) {
-        noNews.innerText = "No news found"
-        // spinner(false)
+        noNews.innerHTML = `
+            <h1>No news found</h1>
+        `;
+        noNews.style.color = 'red'
+        noNews.style.textAlign = 'center'
+        noNews.style.padding = '70px'
+        spinner(false)
     } else {
 
         for (const news of newses) {
 
-            newsTotalID.innerText = newsTotal;
+            noNews.style.color = null
+            noNews.style.textAlign = null
+            noNews.style.padding = null
+            noNews.innerHTML = `
+            <h4>Total ${newsTotal} news found</h4>`;
 
             // console.log(news);
             // console.log(news.author.name)
